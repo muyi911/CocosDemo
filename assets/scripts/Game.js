@@ -99,7 +99,7 @@ cc.Class({
 
     gameOver: function () {
         this.player.stopAllActions();
-        cc.director.loadScene('game');
+        cc.director.loadScene('start');
     }
 
 });
