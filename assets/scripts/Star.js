@@ -54,8 +54,8 @@ cc.Class({
         return dist;
     },
     onPicked: function () {
-        this.game.spawnNewStar();
         this.node.destroy();
         this.game.gainScore();
+        this.game.spawnNewStar();
     }
 });

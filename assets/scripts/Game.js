@@ -7,6 +7,7 @@
 // Learn life-cycle callbacks:
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
+var scoreStore = require('score');
 
 cc.Class({
     extends: cc.Component,
@@ -93,13 +94,14 @@ cc.Class({
 
     gainScore: function () {
         this.score += 1;
+        scoreStore.score = this.score;
         this.scoreDisplay.string = 'Score: ' + this.score;
         cc.audioEngine.playEffect(this.scoreAudio, false);
     },
 
     gameOver: function () {
         this.player.stopAllActions();
-        cc.director.loadScene('start');
+        cc.director.loadScene('gameover');
     }
 
 });

@@ -33,8 +33,8 @@ cc.Class({
 
     onLoad() {
         var clickEventHandler = new cc.Component.EventHandler();
-        clickEventHandler.target = this.node;
-        clickEventHandler.component = "Start";
+        clickEventHandler.target = this.node;  // node触发后执行
+        clickEventHandler.component = "Start";  // 代码的文件名，应该时用来调用这个文件的handler方法的
         clickEventHandler.handler = "callback";
         clickEventHandler.customEventData = "foobar";
 
