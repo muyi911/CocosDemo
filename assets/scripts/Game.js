@@ -31,7 +31,7 @@ cc.Class({
             default: null,
             type: cc.Label
         },
-        scoreAudio:{
+        scoreAudio: {
             default: null,
             type: cc.AudioClip
         }
@@ -76,6 +76,7 @@ cc.Class({
     },
 
     spawnNewStar: function () {
+
         var newStar = cc.instantiate(this.StarPrefab);
         this.node.addChild(newStar);
         newStar.setPosition(this.getNewStarPosition());
@@ -85,10 +86,25 @@ cc.Class({
     },
 
     getNewStarPosition: function () {
+        var node = cc.find('StarPositionNode').getComponent('StarPosition');
+        var position = node.getdata();
+        var newStar = cc.instantiate(this.StarPrefab);
         var randX = 0;
         var randY = this.groundY + Math.random() * this.player.getComponent('Player').jumpHeight + 50;
-        var maxX = this.node.width / 2;
+        var maxX = this.node.width / 2 - newStar.width / 2;
         randX = (Math.random() - 0.5) * 2 * maxX;
+
+        if (!!position) {
+            while (Math.abs(randX - position.x) <= newStar.width + 50) {
+                randX = (Math.random() - 0.5) * 2 * maxX;
+            }
+        } else {
+            position = {};
+        }
+        position.x = randX;
+        position.y = randY;
+        node.setdata(position);
+
         return cc.v2(randX, randY);
     },
 

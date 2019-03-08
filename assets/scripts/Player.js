@@ -16,11 +16,11 @@ cc.Class({
         jumpDuration: 0,
         maxMoveSpeed: 0,
         accel: 0,
-        jumpAudio:{
-            default:null,
+        jumpAudio: {
+            default: null,
             type: cc.AudioClip
         }
-        
+
         // foo: {
         //     // ATTRIBUTES:
         //     default: null,        // The default value will be used only when the component attaching
@@ -47,7 +47,7 @@ cc.Class({
         return cc.repeatForever(cc.sequence(jumpUp, jumpDown, callback));
     },
 
-    playJumpSound: function(){
+    playJumpSound: function () {
         cc.audioEngine.playEffect(this.jumpAudio, false);
     },
 
@@ -85,9 +85,7 @@ cc.Class({
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
     },
 
-    start() {
-
-    },
+    start() {},
 
     update(dt) {
         if (this.accLeft) {
@@ -100,7 +98,17 @@ cc.Class({
             // 调整方向用的
             this.xSpeed = this.maxMoveSpeed * this.xSpeed / Math.abs(this.xSpeed);
         }
+
         this.node.x += this.xSpeed * dt;
+
+        // 角色不能走出屏幕
+        if (this.node.x + this.node.width / 2 > this.node.parent.width / 2) {
+            this.node.x = this.node.parent.width / 2 - this.node.width / 2;
+            this.xSpeed = 0;
+        } else if (this.node.x - this.node.width / 2 < -this.node.parent.width / 2) {
+            this.node.x = -this.node.parent.width / 2 + this.node.width / 2;
+            this.xSpeed = 0;
+        }
     },
 
     onDestroy() {
