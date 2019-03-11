@@ -15,6 +15,9 @@
     "_children": [
       {
         "__id__": 2
+      },
+      {
+        "__id__": 16
       }
     ],
     "_active": false,
@@ -41,8 +44,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.5939208984375,
-      "y": 0.5939208984375,
+      "x": 0.870556640625,
+      "y": 0.870556640625,
       "z": 1
     },
     "_quat": {
@@ -76,19 +79,16 @@
       },
       {
         "__id__": 12
-      },
-      {
-        "__id__": 14
       }
     ],
     "_active": true,
     "_level": 1,
     "_components": [
       {
-        "__id__": 16
+        "__id__": 14
       },
       {
-        "__id__": 17
+        "__id__": 15
       }
     ],
     "_prefab": null,
@@ -437,7 +437,7 @@
     "_anchorPoint": {
       "__type__": "cc.Vec2",
       "x": 0.5,
-      "y": 0
+      "y": 0.5
     },
     "_position": {
       "__type__": "cc.Vec3",
@@ -502,7 +502,7 @@
       "__id__": 9
     },
     "_enabled": true,
-    "jumpHeight": 150,
+    "jumpHeight": 200,
     "jumpDuration": 0.3,
     "maxMoveSpeed": 400,
     "accel": 2000,
@@ -601,77 +601,6 @@
     "_id": "e4oTpHJyBGEbf4WSa2uppg"
   },
   {
-    "__type__": "cc.Node",
-    "_name": "StarPositionNode",
-    "_objFlags": 0,
-    "_parent": {
-      "__id__": 2
-    },
-    "_children": [],
-    "_active": true,
-    "_level": 2,
-    "_components": [
-      {
-        "__id__": 15
-      }
-    ],
-    "_prefab": null,
-    "_opacity": 255,
-    "_color": {
-      "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
-      "a": 255
-    },
-    "_contentSize": {
-      "__type__": "cc.Size",
-      "width": 0,
-      "height": 0
-    },
-    "_anchorPoint": {
-      "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
-    },
-    "_position": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "_scale": {
-      "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
-      "z": 1
-    },
-    "_rotationX": 0,
-    "_rotationY": 0,
-    "_quat": {
-      "__type__": "cc.Quat",
-      "x": 0,
-      "y": 0,
-      "z": 0,
-      "w": 1
-    },
-    "_skewX": 0,
-    "_skewY": 0,
-    "_zIndex": 0,
-    "groupIndex": 0,
-    "_id": "0dmTRSz0pNLrtkpWAWdGC7"
-  },
-  {
-    "__type__": "4dbc4nipAVGFL1w/Cryroez",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 14
-    },
-    "_enabled": true,
-    "_id": "ef/PQV3eFFlK5kx4kVXegL"
-  },
-  {
     "__type__": "cc.Canvas",
     "_name": "",
     "_objFlags": 0,
@@ -701,6 +630,7 @@
     },
     "maxStarDuration": 4,
     "minStarDuration": 3,
+    "overflag": false,
     "ground": {
       "__id__": 6
     },
@@ -713,6 +643,100 @@
     "scoreAudio": {
       "__uuid__": "55d110b9-bab6-4d9d-9416-03e46904fa35"
     },
+    "BulletPrefab": {
+      "__uuid__": "a4415449-229d-43b1-b6db-5576e236278f"
+    },
     "_id": "65+8Ks66NHWIffUfexAYIM"
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "StarPositionNode",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 1
+    },
+    "_children": [],
+    "_active": true,
+    "_level": 1,
+    "_components": [
+      {
+        "__id__": 17
+      },
+      {
+        "__id__": 18
+      }
+    ],
+    "_prefab": null,
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 0,
+      "height": 0
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_position": {
+      "__type__": "cc.Vec3",
+      "x": 480,
+      "y": 320,
+      "z": 0
+    },
+    "_scale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_quat": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_zIndex": 0,
+    "groupIndex": 0,
+    "_id": "0dmTRSz0pNLrtkpWAWdGC7"
+  },
+  {
+    "__type__": "4dbc4nipAVGFL1w/Cryroez",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 16
+    },
+    "_enabled": true,
+    "_id": "ef/PQV3eFFlK5kx4kVXegL"
+  },
+  {
+    "__type__": "cc.Animation",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 16
+    },
+    "_enabled": true,
+    "_defaultClip": null,
+    "_clips": [
+      {
+        "__uuid__": "6bede4e4-2e58-42e5-84c7-3dff521c4592"
+      }
+    ],
+    "playOnLoad": false,
+    "_id": "deg78GqPdH6pC7E6nYko98"
   }
 ]

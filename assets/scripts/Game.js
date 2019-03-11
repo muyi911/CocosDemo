@@ -19,6 +19,7 @@ cc.Class({
         },
         maxStarDuration: 0,
         minStarDuration: 0,
+        overflag: false,
         ground: {
             default: null,
             type: cc.Node
@@ -34,6 +35,10 @@ cc.Class({
         scoreAudio: {
             default: null,
             type: cc.AudioClip
+        },
+        BulletPrefab: {
+            default: null,
+            type: cc.Prefab
         }
 
         // foo: {
@@ -61,6 +66,7 @@ cc.Class({
         this.score = 0;
         this.groundY = this.ground.y + this.ground.height / 2;
         this.spawnNewStar();
+        this.spawnBullet();
     },
 
     start() {
@@ -69,14 +75,15 @@ cc.Class({
 
     update(dt) {
         if (this.timer > this.starDuration) {
-            this.gameOver();
+            if (!this.overflag) {
+                this.gameOver();
+            }
             return;
         }
         this.timer += dt;
     },
 
     spawnNewStar: function () {
-
         var newStar = cc.instantiate(this.StarPrefab);
         this.node.addChild(newStar);
         newStar.setPosition(this.getNewStarPosition());
@@ -94,6 +101,7 @@ cc.Class({
         var maxX = this.node.width / 2 - newStar.width / 2;
         randX = (Math.random() - 0.5) * 2 * maxX;
 
+        // 防止星星位置重叠
         if (!!position) {
             while (Math.abs(randX - position.x) <= newStar.width + 50) {
                 randX = (Math.random() - 0.5) * 2 * maxX;
@@ -104,7 +112,30 @@ cc.Class({
         position.x = randX;
         position.y = randY;
         node.setdata(position);
+        return cc.v2(randX, randY);
+    },
 
+    spawnBullet: function () {
+        var newBullet = cc.instantiate(this.BulletPrefab);
+        this.node.addChild(newBullet);
+        newBullet.setPosition(this.getNewBulletPosition());
+        newBullet.getComponent('Bullet').game = this;
+    },
+
+    getNewBulletPosition: function () {
+        var newBullet = cc.instantiate(this.BulletPrefab);
+        var screenWidth = this.node.width;
+        var randX = 0;
+        var randY = -40; // TODO 后面随机高度
+
+        // 随机方向，小于0.5：从右向左，大于0.5：从左向右
+        if (Math.random() <= 0.5) {
+            this.bulletdirection = -1;
+            randX = screenWidth / 2 + newBullet.width;
+        } else {
+            this.bulletdirection = 1;
+            randX = -(screenWidth / 2 + newBullet.width);
+        }
         return cc.v2(randX, randY);
     },
 
@@ -112,10 +143,12 @@ cc.Class({
         this.score += 1;
         scoreStore.score = this.score;
         this.scoreDisplay.string = 'Score: ' + this.score;
+        cc.audioEngine.setEffectsVolume(0.3);
         cc.audioEngine.playEffect(this.scoreAudio, false);
     },
 
     gameOver: function () {
+        this.overflag = true;
         this.player.stopAllActions();
         cc.director.loadScene('gameover');
     }

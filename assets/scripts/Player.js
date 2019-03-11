@@ -48,6 +48,7 @@ cc.Class({
     },
 
     playJumpSound: function () {
+        cc.audioEngine.setEffectsVolume(0.3); 
         cc.audioEngine.playEffect(this.jumpAudio, false);
     },
 
