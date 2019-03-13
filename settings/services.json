@@ -111,5 +111,29 @@
         "ios"
       ]
     }
-  ]
+  ],
+  "game": {
+    "name": "练手游戏",
+    "appid": "624016301",
+    "cid": "12595"
+  },
+  "configs": [
+    {
+      "appid": "624016301",
+      "services": [
+        {
+          "service_id": "235",
+          "enable": false
+        },
+        {
+          "service_id": "241",
+          "enable": true
+        }
+      ]
+    },
+    {
+      "appid": "UNKNOW"
+    }
+  ],
+  "needExecNative": true
 }
